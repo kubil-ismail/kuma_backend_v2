@@ -6,8 +6,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 // Import Routes
-const home = require('./src/routes');
 const auth = require('./src/routes/api/auth.routes');
+const author = require('./src/routes/api/book/author.routes');
+const book = require('./src/routes/api/book/book.routes');
+const favorite = require('./src/routes/api/book/favorite.routes');
+const genre = require('./src/routes/api/book/genre.routes');
+const home = require('./src/routes');
+const review = require('./src/routes/api/book/review.routes');
 
 // CORS SETTING
 if (APP_DEBUG) {
@@ -44,6 +49,11 @@ app.use(bodyParser.urlencoded({
 // ROUTES APP
 app.use('/', home)
 app.use('/auth', auth)
+app.use('/author', author)
+app.use('/book', book)
+app.use('/favorite', favorite)
+app.use('/genre', genre)
+app.use('/review', review)
 
 // Error Route
 app.get('*', (req, res) => {
