@@ -24,5 +24,5 @@ const getBook = async (req, res) => {
 }
 
 module.exports = {
-  getBook: getBook
+  getBook: getBook,
 }

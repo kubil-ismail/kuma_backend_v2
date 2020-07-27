@@ -37,14 +37,12 @@ if (APP_DEBUG) {
   }))
 }
 
+// for parsing application/json
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // Set static folder root
 app.use('/book/cover/', express.static('public/assets/cover'))
-
-// Setting up bodyParser to use json and set it to req.body
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
 
 // ROUTES APP
 app.use('/', home)
