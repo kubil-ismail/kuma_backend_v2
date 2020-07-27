@@ -99,6 +99,7 @@ const activate = async (req, res) => {
       const checkCode = await auth.findCode({ email: email, code: code })
       if (checkCode.affectedRows === 1) {
         res.send(response({
+          status: true,
           msg: 'Activation successful'
         }))
       } else {
