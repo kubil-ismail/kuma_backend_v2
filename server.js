@@ -13,6 +13,8 @@ const favorite = require('./src/routes/api/book/favorite.routes');
 const genre = require('./src/routes/api/book/genre.routes');
 const home = require('./src/routes');
 const review = require('./src/routes/api/book/review.routes');
+const sosmed = require('./src/routes/api/user/sosmed.routes');
+const user = require('./src/routes/api/user/user.routes');
 
 // CORS SETTING
 if (APP_DEBUG) {
@@ -52,6 +54,8 @@ app.use('/book', book)
 app.use('/favorite', favorite)
 app.use('/genre', genre)
 app.use('/review', review)
+app.use('/sosmed', sosmed)
+app.use('/user', user)
 
 // Error Route
 app.get('*', (req, res) => {
