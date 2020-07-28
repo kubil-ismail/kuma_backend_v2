@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { APP_KEY } = process.env
+const jwt = require('jsonwebtoken')
 const { Validator } = require('node-input-validator')
 const response = require('../helper/response')
 
@@ -47,8 +50,29 @@ const activate = (req, res, next) => {
   })
 }
 
+const apiKey = (req, res, next) => {
+  const header = req.headers.authorization
+
+  if (typeof header !== 'undefined') {
+    jwt.verify(header, APP_KEY, function (err) {
+      if (err) {
+        res.status(401).send(response({
+          msg: 'Api key error'
+        }))
+      } else {
+        next()
+      }
+    })
+  } else {
+    res.status(401).send(response({
+      msg: 'Api key cannot be empty'
+    }))
+  }
+}
+
 module.exports = {
   _login: login,
   _register: login,
-  _activate: activate
+  _activate: activate,
+  _apiKey: apiKey
 }
